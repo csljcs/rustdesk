@@ -27,6 +27,7 @@ class UserPayload {
   String name = '';
   String email = '';
   String note = '';
+  String? verifier;
   UserStatus status;
   bool isAdmin = false;
 
@@ -34,6 +35,7 @@ class UserPayload {
       : name = json['name'] ?? '',
         email = json['email'] ?? '',
         note = json['note'] ?? '',
+        verifier = json['verifier'],
         status = json['status'] == 0
             ? UserStatus.kDisabled
             : json['status'] == -1
@@ -246,15 +248,17 @@ class AbProfile {
   String name;
   String owner;
   String? note;
+  dynamic info;
   int rule;
 
-  AbProfile(this.guid, this.name, this.owner, this.note, this.rule);
+  AbProfile(this.guid, this.name, this.owner, this.note, this.rule, this.info);
 
   AbProfile.fromJson(Map<String, dynamic> json)
       : guid = json['guid'] ?? '',
         name = json['name'] ?? '',
         owner = json['owner'] ?? '',
         note = json['note'] ?? '',
+        info = json['info'],
         rule = json['rule'] ?? 0;
 }
 
